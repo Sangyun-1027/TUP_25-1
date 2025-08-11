@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'rest_framework',  
     'api',             
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 MIDDLEWARE = [
@@ -129,5 +131,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         # 필요 시 TokenAuthentication 추가
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        
     ],
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=12),  # 기본 5분 → 12시간으로 연장
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),   # 기본 1일 → 7일로 연장
+    # 그 외 옵션들 필요하면 추가 가능
 }

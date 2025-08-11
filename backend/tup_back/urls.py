@@ -16,8 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+
+    # JWT 토큰 발급 & 갱신
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
+    # 앱의 API URL 연결
+    path('api/', include('api.urls')),  # <- 여기 your_app_name 수정
 ]

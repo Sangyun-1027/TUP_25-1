@@ -1,16 +1,6 @@
-"""
-WSGI config for tup_back project.
-
-It exposes the WSGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
-"""
-
 import os
-
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tup_back.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'tup_back.settings')  # 실제 프로젝트 폴더명에 맞게 수정
 
 application = get_wsgi_application()
